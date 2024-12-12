@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Delivery Simulation</title>
+    <style>
+        div{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: brown;
+        }
+        #orderBtn:hover{
+            color: green;
+            background-color: rgb(246, 246, 9);
+        }
+        h2{
+            color: rgb(47, 0, 255);
+            font-family: cursive;
+        }
+        
+    </style>
+</head>
+<body>
+    <h2>PIZZA DELIVERY SIMULATION</h2>
+    <div id="status">Order your pizza to begin...</div><br>
+    <button id="orderBtn">Place Order</button>
+    <script>
+        document.getElementById("orderBtn").addEventListener("click", () => {
+    const statusDiv = document.getElementById("status");
+
+    // Step 1: Place order
+    function placeOrder(callback) {
+        statusDiv.innerText = "Order placed! Preparing pizza...";
+        setTimeout(() => callback(), 2000); // Simulate delay
+    }
+
+    // Step 2: Prepare pizza
+    function preparePizza(callback) {
+        statusDiv.innerText = "Pizza is being prepared...";
+        setTimeout(() => callback(), 3000); // Simulate delay
+    }
+
+    // Step 3: Bake pizza
+    function bakePizza(callback) {
+        statusDiv.innerText = "Pizza is in the oven!";
+        setTimeout(() => callback(), 4000); // Simulate delay
+    }
+
+    // Step 4: Pack pizza
+    function packPizza(callback) {
+        statusDiv.innerText = "Pizza is being packed...";
+        setTimeout(() => callback(), 2000); // Simulate delay
+    }
+
+    // Step 5: Deliver pizza
+    function deliverPizza(callback) {
+        statusDiv.innerText = "Pizza is out for delivery!";
+        setTimeout(() => {
+            statusDiv.innerText = "Pizza delivered! Enjoy your meal!";
+            callback();
+        }, 3000); // Simulate delay
+    }
+
+    // Callback hell simulation
+    placeOrder(() => {
+        preparePizza(() => {
+            bakePizza(() => {
+                packPizza(() => {
+                    deliverPizza(() => {
+                        console.log("Pizza delivery process complete!");
+                    });
+                });
+            });
+        });
+    });
+});
+
+    </script>
+</body>
+</html>
